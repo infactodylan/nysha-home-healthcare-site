@@ -1,7 +1,24 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: lemonade --default;
+}
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+/* Soft radial wash behind hero sections */
+.bg-hero-wash {
+  background-image:
+    radial-gradient(
+      1200px circle at 10% -10%,
+      color-mix(in oklch, var(--color-primary) 18%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      900px circle at 90% 20%,
+      color-mix(in oklch, var(--color-accent) 22%, transparent),
+      transparent 50%
+    );
 }

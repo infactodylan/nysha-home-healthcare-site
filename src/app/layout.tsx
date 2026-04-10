@@ -13,8 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nysha Home Healthcare",
-  description: "Nysha Home Healthcare site",
+  title: {
+    default: "Rosie Personal Care Services",
+    template: "%s · Rosie Personal Care",
+  },
+  description:
+    "Compassionate personal care and companionship for seniors—CNA since 2011, licensed and insured. Private pay support in Fort Wayne and surrounding areas.",
 };
 
 export default function RootLayout({

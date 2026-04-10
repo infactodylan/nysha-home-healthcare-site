@@ -12,13 +12,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Rosie Personal Care Services",
     template: "%s · Rosie Personal Care",
   },
   description:
     "Compassionate personal care and companionship for seniors—CNA since 2011, licensed and insured. Private pay support in Fort Wayne and surrounding areas.",
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({

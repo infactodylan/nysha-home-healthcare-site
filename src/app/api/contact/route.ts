@@ -12,13 +12,13 @@ function badRequest(message: string) {
 export async function POST(request: Request) {
   const apiKey = process.env.SENDGRID_API_KEY;
   const from = process.env.SENDGRID_FROM_EMAIL;
-  const to = process.env.CONTACT_TO_EMAIL;
+  const to = process.env.QUOTE_LEAD_TO_EMAIL;
 
   if (!apiKey || !from || !to) {
     return NextResponse.json(
       {
         error:
-          "Email is not configured. Set SENDGRID_API_KEY, SENDGRID_FROM_EMAIL, and CONTACT_TO_EMAIL.",
+          "Email is not configured. Set SENDGRID_API_KEY, SENDGRID_FROM_EMAIL, and QUOTE_LEAD_TO_EMAIL.",
       },
       { status: 503 },
     );

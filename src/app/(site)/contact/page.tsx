@@ -69,7 +69,7 @@ export default function ContactPage() {
             </code>
             , and{" "}
             <code className="rounded bg-base-200 px-1 py-0.5 text-xs">
-              CONTACT_TO_EMAIL
+              QUOTE_LEAD_TO_EMAIL
             </code>{" "}
             to your environment for production.
           </p>

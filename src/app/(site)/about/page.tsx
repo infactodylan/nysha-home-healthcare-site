@@ -64,8 +64,10 @@ export default function AboutPage() {
             <p className="mt-1 text-sm font-medium">&amp; insured</p>
           </div>
           <div className="rounded-box border border-base-300 bg-base-200/40 p-5 text-center">
-            <p className="text-2xl font-bold text-primary">You</p>
-            <p className="mt-1 text-sm font-medium">Stay in the story</p>
+            <p className="text-2xl font-bold text-primary">Your home</p>
+            <p className="mt-1 text-sm font-medium">
+              Care where you&apos;re comfortable
+            </p>
           </div>
         </div>
 

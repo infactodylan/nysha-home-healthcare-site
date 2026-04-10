@@ -1,0 +1,64 @@
+diff --git a/node_modules/next/dist/esm/lib/metadata/resolvers/resolve-opengraph.js b/node_modules/next/dist/esm/lib/metadata/resolvers/resolve-opengraph.js
+index e26cc8b..1d1f7d3 100644
+--- a/node_modules/next/dist/esm/lib/metadata/resolvers/resolve-opengraph.js
++++ b/node_modules/next/dist/esm/lib/metadata/resolvers/resolve-opengraph.js
+@@ -72,12 +72,25 @@ function resolveAndValidateImage(item, metadataBase, isStaticMetadataRouteFile)
+         }
+         metadataBase = fallbackMetadataBase;
+     }
++    const resolvedUrl = resolveUrl(inputUrl, metadataBase);
++    // Static opengraph-image / twitter-image routes are often resolved to absolute URLs using
++    // build-time fallbacks (e.g. localhost). Emit root-relative paths so crawlers resolve images
++    // against the current deployment host in every environment.
++    if (isStaticMetadataRouteFile && resolvedUrl instanceof URL) {
++        const rootRelative = resolvedUrl.pathname + (resolvedUrl.search || '');
++        return isItemUrl ? {
++            url: rootRelative
++        } : {
++            ...item,
++            url: rootRelative
++        };
++    }
+     return isItemUrl ? {
+-        url: resolveUrl(inputUrl, metadataBase)
++        url: resolvedUrl
+     } : {
+         ...item,
+         // Update image descriptor url
+-        url: resolveUrl(inputUrl, metadataBase)
++        url: resolvedUrl
+     };
+ }
+ export function resolveImages(images, metadataBase, isStaticMetadataRouteFile) {
+diff --git a/node_modules/next/dist/lib/metadata/resolvers/resolve-opengraph.js b/node_modules/next/dist/lib/metadata/resolvers/resolve-opengraph.js
+index 4d53a32..73a9a22 100644
+--- a/node_modules/next/dist/lib/metadata/resolvers/resolve-opengraph.js
++++ b/node_modules/next/dist/lib/metadata/resolvers/resolve-opengraph.js
+@@ -98,12 +98,25 @@ function resolveAndValidateImage(item, metadataBase, isStaticMetadataRouteFile)
+         }
+         metadataBase = fallbackMetadataBase;
+     }
++    const resolvedUrl = (0, _resolveurl.resolveUrl)(inputUrl, metadataBase);
++    // Static opengraph-image / twitter-image routes are often resolved to absolute URLs using
++    // build-time fallbacks (e.g. localhost). Emit root-relative paths so crawlers resolve images
++    // against the current deployment host in every environment.
++    if (isStaticMetadataRouteFile && resolvedUrl instanceof URL) {
++        const rootRelative = resolvedUrl.pathname + (resolvedUrl.search || '');
++        return isItemUrl ? {
++            url: rootRelative
++        } : {
++            ...item,
++            url: rootRelative
++        };
++    }
+     return isItemUrl ? {
+-        url: (0, _resolveurl.resolveUrl)(inputUrl, metadataBase)
++        url: resolvedUrl
+     } : {
+         ...item,
+         // Update image descriptor url
+-        url: (0, _resolveurl.resolveUrl)(inputUrl, metadataBase)
++        url: resolvedUrl
+     };
+ }
+ function resolveImages(images, metadataBase, isStaticMetadataRouteFile) {

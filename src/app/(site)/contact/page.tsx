@@ -58,22 +58,7 @@ export default function ContactPage() {
               </span>
             </li>
           </ol>
-          <p className="mt-8 text-sm leading-relaxed opacity-80">
-            Email delivery uses SendGrid. Add{" "}
-            <code className="rounded bg-base-200 px-1 py-0.5 text-xs">
-              SENDGRID_API_KEY
-            </code>
-            ,{" "}
-            <code className="rounded bg-base-200 px-1 py-0.5 text-xs">
-              SENDGRID_FROM_EMAIL
-            </code>
-            , and{" "}
-            <code className="rounded bg-base-200 px-1 py-0.5 text-xs">
-              QUOTE_LEAD_TO_EMAIL
-            </code>{" "}
-            to your environment for production.
-          </p>
-          <Link href="/services/personal-care" className="btn btn-outline btn-sm mt-6">
+          <Link href="/services/personal-care" className="btn btn-outline btn-sm mt-8">
             Review personal care services
           </Link>
         </div>
